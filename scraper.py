@@ -2,15 +2,9 @@
 # -*- coding: utf-8 -*-
 
 
-# export PSQLPASSWORD="PASSWORD"
-
-
 from selenium import webdriver
 from datetime import datetime
-# from google.cloud import storage
 
-# we need to know where the chrome driver is on the machine (not like Firefox)
-# /home/waela/Desktop/selenium/scraping/
 
 import os
 import time
@@ -19,47 +13,20 @@ import psycopg2
 
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-# fix for MacOs security
-# xattr -d com.apple.quarantine chromedriver
-
 
 from collections import defaultdict
 
 from selenium.common.exceptions import NoSuchElementException
 
-# import beepy #to trigger alarms when scraper fails or crashes
+
 import csv
 import os.path
 
 
 
-chrome_path = r"/Users/waelalmasri/Desktop/backend/blue_bots/bots/new_all/scraper/chromedriver"
+chrome_path = r"[FULL_PATH_TO_CHROMEDRIVER]"
 
 
-# correcting permissions for chromedriver
-# os.chmod('/Users/waelmas/Desktop/coding/blue_bots/bots/new_all/scraper', 0o755)
-
-
-# SOS: For security, you add PSQLPASSWORD as an ENV variable
-
-
-# search element in element (. at the beginning of xpath)
-# element2 = driver.find_element_by_xpath("//div[@title='div2']")
-# element2.find_element_by_xpath(".//p[@class='test']").text
-
-
-# psql_password = os.environ.get('PSQLPASSWORD')
-psql_password = ''
-
-global dbparams
-
-dbparams = {
-    'database': 'GlobalData',
-    'user': 'postgres',
-    'password': '',
-    'host': '.eu-central-1.rds.amazonaws.com',
-    'port': 5432
-}
 
 
 chrome_options = webdriver.ChromeOptions()
@@ -70,23 +37,6 @@ chrome_options.add_argument("--no-sandbox")
 
 # driver = webdriver.Chrome(chrome_path, chrome_options=chrome_options)
 driver = webdriver.Chrome(chrome_path, options=chrome_options)
-
-global Temp
-Temp = {}
-L = []
-
-
-def listToString(L):
-
-    # initialize an empty string
-    str1 = " "
-
-    # return string
-    for i in L:
-        print(i)
-        str1 = str1+","+str(i)
-
-    return str(str1[2:])
 
 
 
@@ -108,9 +58,6 @@ csvfile = open(outfile, 'w')
 writer = csv.writer(csvfile)
 writer.writerow(["Timestamp", "Frequency"])
 csvfile.close()
-
-
-
 
 
 time.sleep(2)
