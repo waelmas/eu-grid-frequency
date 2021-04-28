@@ -33,33 +33,9 @@ import os.path
 
 
 
-chrome_path = r"/Users/waelalmasri/Desktop/backend/blue_bots/bots/new_all/scraper/chromedriver"
+chrome_path = r"[FULL_PATH_TO_CHROMEDRIVER]"
 
 
-# correcting permissions for chromedriver
-# os.chmod('/Users/waelmas/Desktop/coding/blue_bots/bots/new_all/scraper', 0o755)
-
-
-# SOS: For security, you add PSQLPASSWORD as an ENV variable
-
-
-# search element in element (. at the beginning of xpath)
-# element2 = driver.find_element_by_xpath("//div[@title='div2']")
-# element2.find_element_by_xpath(".//p[@class='test']").text
-
-
-# psql_password = os.environ.get('PSQLPASSWORD')
-psql_password = ''
-
-global dbparams
-
-dbparams = {
-    'database': 'GlobalData',
-    'user': 'postgres',
-    'password': '',
-    'host': '.eu-central-1.rds.amazonaws.com',
-    'port': 5432
-}
 
 
 chrome_options = webdriver.ChromeOptions()
@@ -70,25 +46,6 @@ chrome_options.add_argument("--no-sandbox")
 
 # driver = webdriver.Chrome(chrome_path, chrome_options=chrome_options)
 driver = webdriver.Chrome(chrome_path, options=chrome_options)
-
-global Temp
-Temp = {}
-L = []
-
-
-def listToString(L):
-
-    # initialize an empty string
-    str1 = " "
-
-    # return string
-    for i in L:
-        print(i)
-        str1 = str1+","+str(i)
-
-    return str(str1[2:])
-
-
 
 outfile = 'datanetz/data_.csv'
 file_count = 0
@@ -123,29 +80,6 @@ url = "https://www.netzfrequenzmessung.de/index.htm"
 driver.get(url)
 
 time.sleep(3)
-
-
-# freq_path = '/html/body/div[5]/div/table/tbody/tr/td/span[1]'
-
-
-# freq_el = driver.find_element_by_xpath(freq_path)
-
-
-# freq_text = freq_el.get_attribute('innerHTML')
-# freq_val = freq_text.replace('<font style="vertical-align: inherit;">', '').replace('</font>', '')
-
-
-# timestamp_path = '/html/body/div[5]/div/table/tbody/tr/td/span[3]'
-
-# timestamp_el = driver.find_element_by_xpath(timestamp_path)
-
-# timestamp_val = timestamp_el.get_attribute('innerHTML')
-
-# timestamp_val = timestamp_val.replace('<font style="vertical-align: inherit;">', '').replace('</font>', '')
-
-
-# print(timestamp_val)
-# print(freq_val)
 
 last_timestamp_val = " "
 
